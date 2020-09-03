@@ -1,4 +1,4 @@
-miFuncion(8);
+miFuncion(5,"hola mundo");
 
 function miFuncion(numero:number ,cadena? : string)
 {
