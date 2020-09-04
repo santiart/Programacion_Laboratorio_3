@@ -9,7 +9,7 @@ class Fabrica
 
     public function __construct($razonSocial)
     {
-        $this->_cantidadMaxima = 0;
+        $this->_cantidadMaxima = 5;
         $this->_empleados = array();
         $this->_razonSocial = $razonSocial;
     }
@@ -17,10 +17,14 @@ class Fabrica
     public function AgregarEmpleado(Empleado $emp)
     {
         $retorno = false;
-        if($this->empleados < 5)
+        if(is_a($emp,"Empleado"))
         {
-            array_push($_empleados, $emp);
-            $retorno = true;
+            if(count($this->_empleados) < $this->_cantidadMaxima)
+            {
+                array_push($this->_empleados, $emp);
+                $retorno = true;
+                $this->EliminarEmpleadoRepetido();
+            }
         }
         return $retorno;
     }
@@ -50,7 +54,23 @@ class Fabrica
         return $retorno;
     }
 
-    private function EliminarEmpleadoRepetido(){}
+    private function EliminarEmpleadoRepetido()
+    {
+        $this->_empleados = array_unique($this->_empleados,SORT_REGULAR);
+    }
 
-    public function ToString(){}
+    public function ToString()
+    {
+        $cadena  = '';
+        $cadena .= 'Cantidad Maxima: '. $this->_cantidadMaxima.'<br>';
+        $cadena .= 'Razon Social: '. $this->_razonSocial . '<br>';
+
+        foreach($this->_empleados as $emp)
+        {
+            $cadena .= "Empleado: " . $emp->GetApellido() . '-' . $emp->GetNombre() . '-' . $emp->GetDni() . '-' .
+             $emp->GetSexo() . '-' . $emp->GetLegajo() . '-' . $emp->GetSueldo() .'-' . $emp->GetTurno() . '<br>';
+        }
+
+        return $cadena;
+    }
 }
