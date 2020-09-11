@@ -17,7 +17,7 @@ else{
 switch ($accion) {
     case 1:
         $ar = fopen("datos.txt", "a");
-        $alta = $legajo ." - ". $apellido." - ".$nombre;
+        $alta = $legajo ." - ". $apellido." - ".$nombre."<br>";
         $cant = fwrite($ar, $alta."\r\n");
         if($cant > 0)
         {
@@ -33,6 +33,15 @@ switch ($accion) {
         echo "<h2>".fgets($ar)."<h2>";
 
         fclose($ar);
+        break;
+
+    case 3:
+
+
+        break;
+
+    default:
+        echo 'toga';
         break;
 }
 
