@@ -6,8 +6,8 @@ if(isset($_POST["accion"]))
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellido"];
     $legajo = $_POST["legajo"];
-    $foto = $_POST["foto"];
-
+    //var_dump($_POST);
+    $foto = $_FILES["foto"];
 }
 else{
     $accion = null;
@@ -20,7 +20,7 @@ else{
 switch ($accion) {
     case 1:
         $ar = fopen("datos.txt", "a");
-        $alta = $legajo ." - ". $apellido." - ".$nombre. RecuperarPath() ."<br>";
+        $alta = $legajo ." - ". $apellido." - ".$nombre. "-" .RecuperarPath();
         $cant = fwrite($ar, $alta."\r\n");
         if($cant > 0)
         {
@@ -71,10 +71,10 @@ function BuscarLegajo($path,$legajo)
 
 function RecuperarPath()
 {
-    $nombre = $_POST["legajo"].$_POST["apellido"]."-". pathinfo($_FILES["foto"]["name"],PATHINFO_EXTENSION);
+    $nombre = $_POST["legajo"]. "-" .$_POST["apellido"]. "-" .date("d-m-y-m-s") . "." . pathinfo($_FILES["foto"]["name"],PATHINFO_EXTENSION);
     $path = "./archivos/".$nombre;
 
-    move_uploaded_file($_FILES["foto"]["name"],$path);
+    move_uploaded_file($_FILES["foto"]["tmp_name"],$path);
 
     return $nombre;
 }
