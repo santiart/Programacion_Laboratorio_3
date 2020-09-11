@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -15,8 +14,8 @@ var __extends = (this && this.__extends) || (function () {
 var Prueba;
 (function (Prueba) {
     var Persona = /** @class */ (function () {
-        function Persona(apell, nom) {
-            this.apellido = apell;
+        function Persona(_apellido, nom) {
+            this.apellido = _apellido;
             this.nombre = nom;
         }
         Persona.prototype.GetApellido = function () {
@@ -48,4 +47,10 @@ var Prueba;
     }(Persona));
     Prueba.Alumno = Alumno;
 })(Prueba || (Prueba = {}));
-//# sourceMappingURL=Ejercicio0.js.map
+/// <reference path="Ejercicio0.ts"/>
+var Prueba;
+(function (Prueba) {
+    var alumno = new Prueba.Alumno("a", "n", 1);
+    console.log(alumno.ToString());
+    console.log("lalala");
+})(Prueba || (Prueba = {}));

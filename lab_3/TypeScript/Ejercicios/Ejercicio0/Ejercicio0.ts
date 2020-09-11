@@ -1,4 +1,3 @@
-/// <reference path="Ejercicio0.ts"/>
 namespace Prueba{
 
     export class Persona
@@ -6,9 +5,9 @@ namespace Prueba{
         protected apellido : string;    
         protected nombre : string;
 
-        public constructor(apell : string, nom: string)
+        public constructor(_apellido : string, nom: string)
         {
-            this.apellido = apell;
+            this.apellido = _apellido;
             this.nombre = nom;
         }
 
@@ -27,7 +26,8 @@ namespace Prueba{
         }
     }
 
-    export class Alumno extends Persona{
+    export class Alumno extends Persona
+    {
         protected legajo : number;
 
         constructor(apellido:string,nombre:string,leg:number)
